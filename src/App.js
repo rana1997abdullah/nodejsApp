@@ -8,20 +8,18 @@ function App() {
   const [title, setTitle] = useState("");
 
   const getTodos = async () => {
-    try {
+  
       const res = await axios.get("http://localhost:8080/todos/");
       let data = res.data;
       setTodos(data);
-    } catch (e) {
-      console.log(e);
-    }
+  
   };
   useEffect(() => {
     getTodos();
   }, []);
   const handleAdd = async () => {
     await axios.post("http://localhost:8080/todos/", {
-      id: todos.length + 1,
+      id: todos.length + 2,
       title: title,
     });
     setTodos((todos) => [...todos, { id: todos.length + 2, title: title }]);
